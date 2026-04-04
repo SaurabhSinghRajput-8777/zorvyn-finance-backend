@@ -1,0 +1,39 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: zorvyn_postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: finance_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d finance_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  app:
+    build: ./finance-backend
+    container_name: zorvyn_backend
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=postgres
+      - DB_USER=postgres
+      - DB_PASS=password
+      - SPRING_DATASOURCE_PASSWORD=password
+      # Ensure Spring uses DB_HOST to reach postgres inside Docker network
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+    driver: local

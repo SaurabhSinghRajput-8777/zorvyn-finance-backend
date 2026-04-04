@@ -1,0 +1,35 @@
+# IDEs and Editors
+.idea/
+.settings/
+.classpath
+.project
+.vscode/
+*.iws
+*.iml
+*.ipr
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Environment variables (Crucial for security)
+.env
+*.env
+.env.local
+
+# Build output
+target/
+build/
+bin/
+finance-backend/target/
+finance-backend/build/
+finance-backend/bin/
+finance-backend/logs/
+
+# Log files
+*.log
