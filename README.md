@@ -67,6 +67,17 @@ The system spins up two containers: a PostgreSQL database and the Spring Boot AP
 
 ---
 
+### 🔐 Default Admin Credentials (Demo Mode)
+For ease of evaluation, the application includes a `DataSeeder` that automatically injects a default administrator account if the database is completely empty upon startup. 
+
+Use these credentials to test the secure endpoints:
+* **Username:** `admin`
+* **Password:** `admin123`
+
+*(Note: This auto-seeding behavior is strictly for development and demonstration purposes. In a real production environment, initial root credentials would be securely injected via environment variables or a secrets manager.)*
+
+---
+
 ## 📖 Exploring the API
 
 👉 **Swagger UI:** http://localhost:8080/swagger-ui.html  
